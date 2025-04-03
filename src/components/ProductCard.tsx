@@ -9,7 +9,6 @@ const ProductCard = ({ product }: { product: Product }) => {
     navigate(`/product/${product.id}`);
   };
 
-  // Format date based on type
   const formatDate = (date: Date | Timestamp) => {
     if (date instanceof Timestamp) {
       return new Date(date.seconds * 1000).toLocaleDateString();
@@ -43,9 +42,11 @@ const ProductCard = ({ product }: { product: Product }) => {
         </div>
       </div>
 
-      {/* Date at Bottom-Right */}
+      {/* Date  */}
       <div className="absolute bottom-2 right-2 text-sm text-gray-500">
-        {product.createdAt ? formatDate(product.createdAt) : "Date not available"}
+        {product.createdAt
+          ? formatDate(product.createdAt)
+          : "Date not available"}
       </div>
     </div>
   );

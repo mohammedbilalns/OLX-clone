@@ -22,7 +22,7 @@ const Home = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
 
-  // Fetch all products once when component mounts
+  // Fetch all products
   useEffect(() => {
     const fetchProducts = async () => {
       try {
@@ -42,7 +42,7 @@ const Home = () => {
     fetchProducts();
   }, []);
 
-  // Filter products whenever search query changes
+  // Filter products when search query changes
   useEffect(() => {
     if (!searchQuery.trim()) {
       setFilteredProducts(products);
@@ -63,7 +63,6 @@ const Home = () => {
     <div className="min-h-screen flex flex-col">
       <Navbar onSearch={setSearchQuery} />
       <main className="flex-grow container mx-auto p-4">
-        {/* Responsive Grid Layout */}
         <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
           {filteredProducts.length === 0 ? (
             <div className="col-span-full text-center py-8">

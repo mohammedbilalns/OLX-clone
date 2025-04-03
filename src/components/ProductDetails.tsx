@@ -20,7 +20,7 @@ const ProductDetails = () => {
   const [product, setProduct] = useState<Product | null>(null);
   const [loading, setLoading] = useState(true);
 
-  // Fetch Product Data from Firestore
+  // Fetch Product Data
   useEffect(() => {
     const fetchProduct = async () => {
       if (!id) return;

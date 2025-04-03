@@ -34,19 +34,6 @@ export default function Navbar({ onSearch }: NavbarProps) {
     navigate("/addProduct");
   };
 
-  const handleSearch = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!searchQuery.trim()) {
-      toast.error("Please enter a search term");
-      return;
-    }
-    if (onSearch) {
-      onSearch(searchQuery.trim());
-    } else {
-      navigate("/", { state: { searchQuery: searchQuery.trim() } });
-    }
-  };
-
   const handleLogoClick = () => {
     navigate("/");
     setSearchQuery("");
@@ -93,10 +80,7 @@ export default function Navbar({ onSearch }: NavbarProps) {
         </div>
 
         {/* Product Search Input */}
-        <form
-          onSubmit={handleSearch}
-          className="flex bg-white items-center border border-gray-400 rounded-md px-3 py-2 ml-4 flex-1 relative"
-        >
+        <form className="flex bg-white items-center border border-gray-400 rounded-md px-3 py-2 ml-4 flex-1 relative">
           <input
             type="text"
             value={searchQuery}
@@ -104,16 +88,13 @@ export default function Navbar({ onSearch }: NavbarProps) {
             placeholder="Search Cars, Mobile phones and more"
             className="w-full outline-none text-gray-700"
           />
-          <button
-            type="submit"
-            className="absolute right-0 p-2 rounded-md hover:bg-gray-100 transition-colors"
-          >
+          <div className="absolute right-0 p-2 rounded-md cursor-not-allowed opacity-50">
             <img
               src={lens}
               alt="Search Icon"
               className="w-6 h-6 object-contain"
             />
-          </button>
+          </div>
         </form>
 
         {/* Language Section */}
@@ -122,7 +103,7 @@ export default function Navbar({ onSearch }: NavbarProps) {
           <img src={arrow} alt="Dropdown Arrow" className="w-4 h-4 ml-2" />
         </div>
 
-        {/* Login/Logout Section */}
+        {/* login logout section  */}
         {user ? (
           <div className="flex items-center ml-6 gap-4 cursor-pointer">
             <span className="font-semibold text-gray-700">
@@ -146,7 +127,6 @@ export default function Navbar({ onSearch }: NavbarProps) {
           </div>
         )}
 
-        {/* + SELL Button */}
         <div
           onClick={handleSellClick}
           className="ml-6 flex items-center justify-center px-4 py-2 rounded-full border-2 border-gray-200 bg-white relative cursor-pointer hover:bg-gray-50"
